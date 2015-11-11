@@ -2,9 +2,10 @@
 //
 
 #include "stdafx.h"
+#include <SDL.h>
 
 
-int main()
+int wmain()
 {
     return 0;
 }
