@@ -20,8 +20,18 @@ private:
 	float directionX;
 	float directionY;
 
+	float delta2X;
+	float delta2Y;
+
+	float angle;
+
+	float dx;
+	float dy;
+
+	
+
 public:
-	Bullet(int posX, int posY, int width, int height, Renderer &r, int t, float directionAngle);
+	Bullet(int posX, int posY, int width, int height, Renderer &r, float angle);
 	~Bullet();
 	void Update(float delta, float dirAngle);
 	void Rotate(float angle);

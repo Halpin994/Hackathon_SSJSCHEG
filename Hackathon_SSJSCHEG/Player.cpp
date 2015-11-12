@@ -56,7 +56,7 @@ void Player::Update(Renderer &r, float delta)
 	//directionAngle = atan2(differenceY, differenceX);
 
 	// Update bullets
-	for (std::vector<Bullet>::iterator it = bullets.begin(); it < bullets.end(); ++it)
+	for (std::vector<Bullet>::iterator it = bullets.begin(); it < bullets.end(); it++)
 		it._Ptr->Update(delta, directionAngle);
 
 	// Destroy bullets
@@ -64,7 +64,7 @@ void Player::Update(Renderer &r, float delta)
 	{
 		if (it._Ptr->offScreen())
 		{
-			bullets.erase(it);
+			//bullets.erase(it);
 		}
 	}
 
@@ -84,8 +84,7 @@ void Player::Shoot(Renderer &r)
 	int x = (int)bulletPoint.x;
 	int y = (int)bulletPoint.y;
 
-	Bullet bullet = Bullet(x, y, 12, 12, r, 0, directionAngle);
-	bullets.push_back(bullet);
+	bullets.push_back(Bullet(x, y, 12, 12, r, directionAngle));
 }
 
 void Player::Draw(Renderer &r)

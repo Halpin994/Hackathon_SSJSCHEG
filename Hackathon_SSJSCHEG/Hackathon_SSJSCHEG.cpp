@@ -31,10 +31,10 @@ int wmain()
 	//SDL
 	Renderer r = Renderer(SCREEN_WIDTH, SCREEN_HEIGHT);
 
-	SDL_Point ePos;
-	ePos.x = 100;
-	ePos.y = 100;
-	Enemy en = Enemy(ePos, 77, 62, r, 0);
+
+	Enemy en = Enemy(200,200, 62/3, 77/3, r, 0);
+	Enemy en1 = Enemy(400, 100, 62 / 3, 77 / 3, r, 0);
+
 
 	// MENU
 	SDL_Point bPos;
@@ -110,13 +110,15 @@ int wmain()
 					delta = newTime - oldTime;
 					oldTime = newTime;
 
+					en.Update(delta);
 					en.Draw(r);
+					en1.Update(delta);
+					en1.Draw(r);
 					player.Update(r, delta);
 					player.Draw(r);
 					break;
 					
 				}
-
 				// Exit application
 				if (InputManager::GetInstance()->IsKeyDown(SDLK_ESCAPE))
 				{
