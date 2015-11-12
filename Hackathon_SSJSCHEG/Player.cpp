@@ -14,10 +14,10 @@ Player::Player(SDL_Point pos, int width, int height, Renderer& r, int t) :type(t
 
 	LoadAssets(r);
 
-	directionAngle = 20;
+	directionAngle = 0;
 
-	directionX = 0;
-	directionY = 0;
+	differenceX = 0;
+	differenceY = 0;
 }
 
 Player::~Player()
@@ -48,10 +48,12 @@ void Player::Update(Renderer &r, float delta)
 	float mouseX = InputManager::GetInstance()->GetMousePos().x;
 	float mouseY = InputManager::GetInstance()->GetMousePos().y;
 
-	directionX = mouseX - rect.x;
-	directionY = mouseY - rect.y;
+	differenceX = mouseX - rect.x;
+	differenceY = mouseY - rect.y;
 
-	directionAngle = atan2(directionY, directionX) * 180 / 3.141;
+	// Face sprite in direction of cursor
+	directionAngle = atan2(differenceY, differenceX) * 180 / 3.141;
+	//directionAngle = atan2(differenceY, differenceX);
 
 	// Update bullets
 	for (std::vector<Bullet>::iterator it = bullets.begin(); it < bullets.end(); ++it)
@@ -70,7 +72,7 @@ void Player::Update(Renderer &r, float delta)
 	{
 		Shoot(r);
 	}
-}
+}// End update
 
 void Player::Shoot(Renderer &r)
 {
@@ -79,17 +81,11 @@ void Player::Shoot(Renderer &r)
 	bulletPoint.x = rect.x;
 	bulletPoint.y = rect.y;
 
-	Bullet bullet = Bullet(bulletPoint, 12, 12, r, 0, directionAngle);
+	int x = (int)bulletPoint.x;
+	int y = (int)bulletPoint.y;
+
+	Bullet bullet = Bullet(x, y, 12, 12, r, 0, directionAngle);
 	bullets.push_back(bullet);
-}
-
-void Player::CollisionResponse()
-{
-}
-
-bool Player::CheckAlive()
-{
-	return alive;
 }
 
 void Player::Draw(Renderer &r)

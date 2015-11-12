@@ -111,8 +111,8 @@ int wmain()
 					oldTime = newTime;
 
 					en.Draw(r);
-					player.Draw(r);
 					player.Update(r, delta);
+					player.Draw(r);
 					break;
 					
 				}

@@ -21,8 +21,8 @@ private:
 	void LoadAssets(Renderer &r);
 	float directionAngle;
 
-	float directionX;
-	float directionY;
+	float differenceX;
+	float differenceY;
 
 	std::vector<Bullet> bullets;
 
@@ -31,8 +31,6 @@ public:
 	~Player();
 	void Update(Renderer &r, float delta);
 	void Rotate(float angle);
-	void CollisionResponse();
-	bool CheckAlive();
 	void Draw(Renderer &r);
 	void Shoot(Renderer &r);
 };
