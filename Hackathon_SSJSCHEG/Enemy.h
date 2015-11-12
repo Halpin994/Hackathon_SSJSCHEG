@@ -9,17 +9,22 @@ private:
 	SDL_Rect* m_render_rect;
 	SDL_Texture* m_texture = NULL;
 	SDL_Surface* m_surface;
-	SDL_Point position;
+	float xPosition;
+	float yPosition;
+	SDL_Point* center;
 	int type;
 	bool alive;
 	void LoadAssets(Renderer &r);
-	float direction;
+	float directionAngleX;
+	float directionAngleY;
+	float directionAngle;
+	//SDL_RendererFlip flipType = SDL_FLIP_VERTICAL;
 	
 public:
-	Enemy(SDL_Point pos, int width, int height, Renderer &r, int t);
+	Enemy(int xPos,int yPos, int width, int height, Renderer &r, int t);
 	~Enemy();
-	void Update();
-	void Movement();
+	void Update(float delta);
+	void Movement(float delta);
 	void CollisionResponse();
 	int GetType();
 	bool CheckAlive();
