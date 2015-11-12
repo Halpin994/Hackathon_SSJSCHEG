@@ -8,6 +8,7 @@
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="Level.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AudioManager.h" />
@@ -17,6 +18,7 @@
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="Level.h" />
   </ItemGroup>
   <ItemGroup>
     <Media Include="flute.wav" />

@@ -7,6 +7,7 @@
 #include "Enemy.h"
 #include "AudioManager.h"
 #include "Menu.h"
+#include "Level.h"
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 900;
@@ -36,6 +37,7 @@ int wmain()
 	ePos.y = 100;
 	Enemy en = Enemy(200,200, 62/3, 77/3, r, 0);
 	Enemy en1 = Enemy(400, 100, 62 / 3, 77 / 3, r, 0);
+	Level lvl = Level(r);
 
 
 	// MENU
@@ -108,6 +110,7 @@ int wmain()
 					oldTime = newTime;
 
 					en.Update(delta);
+					lvl.Draw(r);
 					en.Draw(r);
 					en1.Update(delta);
 					en1.Draw(r);
