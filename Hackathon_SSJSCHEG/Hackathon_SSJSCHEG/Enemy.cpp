@@ -15,6 +15,7 @@ Enemy::Enemy(int xPos,int yPos, int width, int height, Renderer& r, int t):type(
 
 Enemy::~Enemy()
 {
+
 }
 
 void Enemy::LoadAssets(Renderer& r)

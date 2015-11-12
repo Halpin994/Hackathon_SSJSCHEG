@@ -5,6 +5,7 @@
 #include "stdafx.h"
 #include <SDL.h>
 #include "Enemy.h"
+#include "AudioManager.h"
 #include "Menu.h"
 
 //Screen dimension constants
@@ -26,7 +27,13 @@ int wmain()
 	//SDL
 	Renderer r = Renderer(SCREEN_WIDTH, SCREEN_HEIGHT);
 
+	AudioManager::GetInstance()->Init();
+	AudioManager::GetInstance()->LoadMedia();
+	AudioManager::GetInstance()->PlaySoundEffect(1);
 
+	SDL_Point ePos;
+	ePos.x = 100;
+	ePos.y = 100;
 	Enemy en = Enemy(200,200, 62/3, 77/3, r, 0);
 	Enemy en1 = Enemy(400, 100, 62 / 3, 77 / 3, r, 0);
 
@@ -54,6 +61,8 @@ int wmain()
 			float delta = 0.f;
 			float newTime = 0.f;
 			SDL_Event e;
+
+			//AudioManager::GetInstance()->PlaySoundEffect(1);
 
 			while (!quit) {
 				while (SDL_PollEvent(&e) != 0) 
