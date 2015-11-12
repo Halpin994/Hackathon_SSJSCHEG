@@ -30,7 +30,14 @@
     <ClInclude Include="Renderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+<<<<<<< HEAD:Hackathon_SSJSCHEG/Hackathon_SSJSCHEG/Hackathon_SSJSCHEG.vcxproj.filters
     <ClInclude Include="AudioManager.h">
+=======
+    <ClInclude Include="InputManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu.h">
+>>>>>>> refs/remotes/origin/master:Hackathon_SSJSCHEG/Hackathon_SSJSCHEG.vcxproj.filters
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -47,6 +54,7 @@
     <ClCompile Include="Renderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+<<<<<<< HEAD:Hackathon_SSJSCHEG/Hackathon_SSJSCHEG/Hackathon_SSJSCHEG.vcxproj.filters
     <ClCompile Include="AudioManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -55,5 +63,13 @@
     <Media Include="flute.wav">
       <Filter>Resource Files</Filter>
     </Media>
+=======
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+>>>>>>> refs/remotes/origin/master:Hackathon_SSJSCHEG/Hackathon_SSJSCHEG.vcxproj.filters
   </ItemGroup>
 </Project>
