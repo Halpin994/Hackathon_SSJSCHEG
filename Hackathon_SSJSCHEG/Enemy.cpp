@@ -54,3 +54,8 @@ void Enemy::Draw(Renderer &r)
 {
 	SDL_RenderCopy(r.getRender(), m_texture, NULL, m_render_rect);
 }
+
+int Enemy::GetType()
+{
+	return type;
+}

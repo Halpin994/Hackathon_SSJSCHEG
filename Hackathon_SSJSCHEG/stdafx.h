@@ -11,8 +11,11 @@
 #include <tchar.h>
 
 #include <iostream>
+#include <random>
+#include <time.h>
 #include <SDL.h>
 #include <list>
 #include "InputManager.h"
+#include "EnemyManager.h"
 
 // TODO: reference additional headers your program requires here

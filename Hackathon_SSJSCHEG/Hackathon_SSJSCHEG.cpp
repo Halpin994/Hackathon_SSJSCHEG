@@ -18,6 +18,9 @@ SDL_Renderer* gRenderer = NULL;
 
 int wmain()
 {
+	//set up random 
+	std::srand(time(0));
+
 	gameState = MENU;
 	//The window we'll be rendering to
 	SDL_Window* window = NULL;

@@ -21,6 +21,7 @@ public:
 	void Update();
 	void Movement();
 	void CollisionResponse();
+	int GetType();
 	bool CheckAlive();
 	void Draw(Renderer &r);
 };
