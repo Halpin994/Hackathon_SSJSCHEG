@@ -29,5 +29,13 @@ public:
 	int GetType();
 	bool CheckAlive();
 	void Draw(Renderer &r);
+
+	bool operator == (Enemy other) {
+		if (this->xPosition == other.xPosition && this->yPosition == other.yPosition)
+		{
+			return true;
+		}
+		return false;
+	}
 };
 

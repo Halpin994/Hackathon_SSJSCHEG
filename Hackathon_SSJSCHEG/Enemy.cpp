@@ -82,7 +82,6 @@ bool Enemy::CheckAlive()
 void Enemy::Draw(Renderer &r)
 {
 	SDL_RenderCopyEx(r.getRender(), m_texture, NULL, m_render_rect, directionAngle, NULL,SDL_FLIP_NONE);
-	
 }
 
 int Enemy::GetType()

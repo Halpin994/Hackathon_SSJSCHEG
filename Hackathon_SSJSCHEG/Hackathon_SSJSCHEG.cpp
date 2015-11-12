@@ -58,6 +58,8 @@ int wmain()
 			float newTime = 0.f;
 			SDL_Event e;
 
+			EnemyManager::GetInstance()->Spawn(1, r);
+
 			while (!quit) {
 				while (SDL_PollEvent(&e) != 0) 
 				{
@@ -101,11 +103,8 @@ int wmain()
 					delta = newTime - oldTime;
 					oldTime = newTime;
 
-					en.Update(delta);
-					en.Draw(r);
-					en1.Update(delta);
-					en1.Draw(r);
-					en.Draw(r);
+					EnemyManager::GetInstance()->Update(delta);
+					EnemyManager::GetInstance()->Draw(r);
 					break;
 					
 				}

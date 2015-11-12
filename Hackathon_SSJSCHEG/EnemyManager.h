@@ -13,8 +13,10 @@ public:
 		instanceFlag = false;
 	}
 
-	void Spawn(int wave);
-	void RemoveEnemyFromList(Enemy enemy);
+	void Spawn(int wave, Renderer& r);
+	void RemoveEnemyFromList(Enemy* enemy);
+	void Update(float delta);
+	void Draw(Renderer& r);
 
 	//Variables
 
@@ -23,7 +25,12 @@ private:
 	EnemyManager()
 	{
 		//private constructor
+		typeOneEnemies = std::list<Enemy>();
+		typeTwoEnemies = std::list<Enemy>();
+		typeThreeEnemies = std::list<Enemy>();
 	}
+
+	void SpawnEnemy(int type, Renderer& r);
 
 	//Variables
 	const int MINIMUM_ENEMIES = 1;
