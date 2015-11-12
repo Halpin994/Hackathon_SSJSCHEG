@@ -4,10 +4,12 @@
 
 #include "stdafx.h"
 #include <SDL.h>
+#include "Enemy.h"
+#include "Menu.h"
 
 //Screen dimension constants
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
+const int SCREEN_WIDTH = 900;
+const int SCREEN_HEIGHT = 600;
 
 const int MENU = 0, PLAY = 1;
 int gameState;
@@ -22,32 +24,31 @@ int wmain()
 	//The surface contained by the window
 	SDL_Surface* screenSurface = NULL;
 	//SDL
+	Renderer r = Renderer(SCREEN_WIDTH, SCREEN_HEIGHT);
+
+	SDL_Point ePos;
+	ePos.x = 100;
+	ePos.y = 100;
+	Enemy en = Enemy(ePos, 77, 62, r, 0);
+
+	// MENU
+	SDL_Point bPos;
+	bPos.x = 0;
+	bPos.y = 0;
+	Menu background = Menu(bPos, SCREEN_WIDTH, SCREEN_HEIGHT, r, 0, "background");
+
+	SDL_Point pPos;
+	pPos.x = SCREEN_WIDTH/3;
+	pPos.y = SCREEN_HEIGHT/4;
+	Menu playBtn = Menu(pPos, 263, 44, r, 0, "playBtn");
+
+	SDL_Point e2Pos;
+	e2Pos.x = (SCREEN_WIDTH / 2) - 50;
+	e2Pos.y = (SCREEN_HEIGHT / 2) -20;
+	Menu exitBtn = Menu(e2Pos, 111, 45, r, 0, "exitBtn");
 
 #pragma region SDL STUFF
-	//Initialize SDL
-	if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-		printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
-	}
-	else {
-		//Create window
-		window = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
-		if (window == NULL) {
-			printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
-		}
-		else //////
-		{
-			//Create Renderer for the Window
-			gRenderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-			if (gRenderer == NULL)
-			{
-				printf("Renderer could not be created! SDL Error: %s\n", SDL_GetError());
-				return 0;
-			}
-			else {
-				//Initialize renderer color
-				SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
-				screenSurface = SDL_GetWindowSurface(window);
-			}
+
 			bool quit = false;
 
 			SDL_Event e;
@@ -57,25 +58,47 @@ int wmain()
 				{
 				}
 				//controls gameState added in game menu feature
+				r.Begin();
 				switch (gameState) 
 				{
+					
+					
 				case MENU:
+
+					//detect button click
+					if (e.type == SDL_MOUSEBUTTONDOWN) 
+					{
+						//If the left mouse button was pressed
+						if (e.button.button == SDL_BUTTON_LEFT) 
+						{
+							//Get the mouse offsets
+							int mouse_x = e.button.x;
+							int mouse_y = e.button.y;
+
+							if (playBtn.IsClicked(mouse_x, mouse_y)) 
+							{
+								gameState = PLAY;
+							}
+							else if (exitBtn.IsClicked(mouse_x, mouse_y))
+							{
+								quit = true;
+							}
+						}
+					}// End detect button click
+
+
+					background.Draw(r);
+					playBtn.Draw(r);
+					exitBtn.Draw(r);
 					break;
 				case PLAY:
+					en.Draw(r);
 					break;
+					
 				}
+				r.End();
 			}
-		}
-	}
 
-#pragma endregion
-
-	//Destroy window
-	SDL_DestroyWindow(window);
-
-	//Quit SDL subsystems
-	SDL_Quit();
-
-	return 0;
+	return EXIT_SUCCESS;
 }
 
