@@ -11,6 +11,7 @@ Enemy::Enemy(SDL_Point pos, int width, int height, Renderer& r, int t):type(t)
 
 Enemy::~Enemy()
 {
+
 }
 
 void Enemy::LoadAssets(Renderer& r)

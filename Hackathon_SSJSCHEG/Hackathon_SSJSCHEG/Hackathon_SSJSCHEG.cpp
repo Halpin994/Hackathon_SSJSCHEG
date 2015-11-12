@@ -5,6 +5,7 @@
 #include "stdafx.h"
 #include <SDL.h>
 #include "Enemy.h"
+#include "AudioManager.h"
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 900;
@@ -25,6 +26,10 @@ int wmain()
 	//SDL
 	Renderer r = Renderer(SCREEN_WIDTH, SCREEN_HEIGHT);
 
+	AudioManager::GetInstance()->Init();
+	AudioManager::GetInstance()->LoadMedia();
+	AudioManager::GetInstance()->PlaySoundEffect(1);
+
 	SDL_Point ePos;
 	ePos.x = 100;
 	ePos.y = 100;
@@ -34,6 +39,8 @@ int wmain()
 			bool quit = false;
 
 			SDL_Event e;
+
+			//AudioManager::GetInstance()->PlaySoundEffect(1);
 
 			while (!quit) {
 				while (SDL_PollEvent(&e) != 0) 
