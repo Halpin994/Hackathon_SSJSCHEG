@@ -6,6 +6,7 @@
 #include <SDL.h>
 #include "Enemy.h"
 #include "Menu.h"
+#include "Player.h"
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 900;
@@ -46,6 +47,12 @@ int wmain()
 	e2Pos.x = (SCREEN_WIDTH / 2) - 50;
 	e2Pos.y = (SCREEN_HEIGHT / 2) -20;
 	Menu exitBtn = Menu(e2Pos, 111, 45, r, 0, "exitBtn");
+
+	// Player
+	SDL_Point playerPos;
+	playerPos.x = SCREEN_WIDTH / 2;
+	playerPos.y = SCREEN_HEIGHT / 2;
+	Player player = Player(playerPos, 32, 44, r, 0);
 
 #pragma region SDL STUFF
 
@@ -93,6 +100,7 @@ int wmain()
 					break;
 				case PLAY:
 					en.Draw(r);
+					player.Draw(r);
 					break;
 					
 				}
