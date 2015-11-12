@@ -70,6 +70,10 @@ int wmain()
 				while (SDL_PollEvent(&e) != 0) 
 				{
 				}
+
+				if (e.button.button == SDL_SCANCODE_ESCAPE)
+					quit = true;
+
 				//controls gameState added in game menu feature
 				r.Begin();
 				switch (gameState) 
@@ -81,6 +85,7 @@ int wmain()
 					//detect button click
 					if (e.type == SDL_MOUSEBUTTONDOWN) 
 					{
+
 						//If the left mouse button was pressed
 						if (e.button.button == SDL_BUTTON_LEFT) 
 						{
