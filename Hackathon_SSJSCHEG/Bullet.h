@@ -2,20 +2,16 @@
 #include <SDL.h>
 #include "Renderer.h"
 #include <SDL_image.h>
-#include "InputManager.h"
-#include "Bullet.h"
-
-#include <vector>
 
 using namespace std;
-class Player
+class Bullet
 {
 private:
 	SDL_Rect* m_render_rect;
 	SDL_Rect rect;
 	SDL_Texture* m_texture = NULL;
 	SDL_Surface* m_surface;
-	SDL_Point position;
+	SDL_Point m_position;
 	int type;
 	bool alive;
 	void LoadAssets(Renderer &r);
@@ -24,15 +20,14 @@ private:
 	float directionX;
 	float directionY;
 
-	std::vector<Bullet> bullets;
-
 public:
-	Player(SDL_Point pos, int width, int height, Renderer &r, int t);
-	~Player();
-	void Update(Renderer &r, float delta);
+	Bullet(SDL_Point pos, int width, int height, Renderer &r, int t, float directionAngle);
+	~Bullet();
+	void Update(float delta, float dirAngle);
 	void Rotate(float angle);
 	void CollisionResponse();
 	bool CheckAlive();
 	void Draw(Renderer &r);
-	void Shoot(Renderer &r);
+	void Shoot();
+	bool offScreen();
 };

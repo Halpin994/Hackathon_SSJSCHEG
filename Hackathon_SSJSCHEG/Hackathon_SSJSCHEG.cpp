@@ -7,6 +7,7 @@
 #include "Enemy.h"
 #include "Menu.h"
 #include "Player.h"
+#include "InputManager.h"
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 900;
@@ -19,7 +20,10 @@ SDL_Renderer* gRenderer = NULL;
 
 int wmain()
 {
-	gameState = MENU;
+	// Hide cursor
+	SDL_ShowCursor(0);
+
+	gameState = PLAY;
 	//The window we'll be rendering to
 	SDL_Window* window = NULL;
 	//The surface contained by the window
@@ -52,17 +56,20 @@ int wmain()
 	SDL_Point playerPos;
 	playerPos.x = SCREEN_WIDTH / 2;
 	playerPos.y = SCREEN_HEIGHT / 2;
-	Player player = Player(playerPos, 32, 44, r, 0);
+	Player player = Player(playerPos, 44, 32, r, 0);
 
 #pragma region SDL STUFF
 
 			bool quit = false;
-
+			float oldTime = SDL_GetTicks();
+			float delta = 0.f;
+			float newTime = 0.f;
 			SDL_Event e;
 
 			while (!quit) {
 				while (SDL_PollEvent(&e) != 0) 
 				{
+					InputManager::GetInstance()->UpdatePolledEvents(e);
 				}
 				//controls gameState added in game menu feature
 				r.Begin();
@@ -99,11 +106,28 @@ int wmain()
 					exitBtn.Draw(r);
 					break;
 				case PLAY:
+					newTime = SDL_GetTicks();
+					delta = newTime - oldTime;
+					oldTime = newTime;
+
 					en.Draw(r);
 					player.Draw(r);
+					player.Update(r, delta);
 					break;
 					
 				}
+
+				// Exit application
+				if (InputManager::GetInstance()->IsKeyDown(SDLK_ESCAPE))
+				{
+					quit = true;
+				}
+
+				//// Hide cursor
+				//SDL_ShowCursor(0);// Hide
+
+				InputManager::GetInstance()->UpdateState();
+
 				r.End();
 			}
 
