@@ -1,5 +1,6 @@
 // Hackathon_SSJSCHEG.cpp : Defines the entry point for the console application.
 //
+#pragma comment(lib, "SDL2_image.lib")
 
 #include "stdafx.h"
 #include <SDL.h>
