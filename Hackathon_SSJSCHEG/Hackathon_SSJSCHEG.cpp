@@ -25,14 +25,15 @@ int wmain()
 	//SDL
 	Renderer r = Renderer(SCREEN_WIDTH, SCREEN_HEIGHT);
 
-	SDL_Point ePos;
-	ePos.x = 100;
-	ePos.y = 100;
-	Enemy en = Enemy(ePos, 77, 62, r, 0);
+	Enemy en = Enemy(200,200, 62/3, 77/3, r, 0);
+	Enemy en1 = Enemy(400, 100, 62 / 3, 77 / 3, r, 0);
+
 #pragma region SDL STUFF
 
 			bool quit = false;
-
+			float oldTime = SDL_GetTicks();
+			float delta = 0.f;
+			float newTime = 0.f;
 			SDL_Event e;
 
 			while (!quit) {
@@ -46,12 +47,22 @@ int wmain()
 					
 					
 				case MENU:
+					//en.Movement();
+					newTime = SDL_GetTicks();
+					delta = newTime - oldTime;
+					oldTime = newTime;
+
+					en.Update(delta);
 					en.Draw(r);
+					en1.Update(delta);
+					en1.Draw(r);
+
 					break;
 				case PLAY:
 					break;
 					
 				}
+				
 				r.End();
 			}
 
