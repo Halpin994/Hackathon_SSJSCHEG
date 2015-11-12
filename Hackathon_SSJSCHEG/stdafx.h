@@ -10,6 +10,9 @@
 #include <stdio.h>
 #include <tchar.h>
 
-
+#include <iostream>
+#include <SDL.h>
+#include <list>
+#include "InputManager.h"
 
 // TODO: reference additional headers your program requires here
