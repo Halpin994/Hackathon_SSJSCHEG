@@ -96,18 +96,22 @@ int wmain()
 	e2Pos.x = (SCREEN_WIDTH / 2) - 50;
 	e2Pos.y = (SCREEN_HEIGHT / 2) - 20;
 	Menu exitBtn = Menu(e2Pos, 111, 45, r, 0, "exitBtn");
-
 	// Player
 	SDL_Point playerPos;
 	playerPos.x = SCREEN_WIDTH / 2 - 25;
 	playerPos.y = SCREEN_HEIGHT / 2 - 10;
 	Player player = Player(playerPos, 44, 32, r, 0);
 
+
 	// THREADS \\
 
 	// Run the thread
-	int data = 101;
-	SDL_Thread* threadID = SDL_CreateThread(renderThreadFunction, "RenderThread", (void*)data);
+	//Player * p = (); // pointer to object
+	void * pv = &player;          // pointer to void
+	Player * p2 = static_cast<Player *>(pv); // pointer to the same object
+
+	int data;
+	SDL_Thread* threadID = SDL_CreateThread(renderThreadFunction, "RenderThread", (void*)p2);
 
 	// THREADS \\
 #pragma endregion
@@ -185,7 +189,7 @@ int wmain()
 					player.Update(r, delta);
 					player.Draw(r);
 
-					calculateFPS();
+					//calculateFPS();
 
 					break;
 					
@@ -223,7 +227,8 @@ void calculateFPS()
 
 int renderThreadFunction(void* data)
 {
-	//Print incoming data
+
+	// Print incoming data
 	printf("Running thread with value = %d\n", (int)data);
 
 	return 0;

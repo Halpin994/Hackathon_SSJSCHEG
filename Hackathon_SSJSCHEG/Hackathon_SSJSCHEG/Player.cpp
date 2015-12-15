@@ -106,3 +106,8 @@ void Player::Draw(Renderer &r)
 		}
 	}
 }
+
+void Player::Output()
+{
+	cout << "Here!" << endl;
+}

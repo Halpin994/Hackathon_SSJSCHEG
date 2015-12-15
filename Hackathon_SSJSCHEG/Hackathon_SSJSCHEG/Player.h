@@ -34,4 +34,6 @@ public:
 	void Rotate(float angle);
 	void Draw(Renderer &r);
 	void Shoot(Renderer &r);
+
+	void Output();
 };
